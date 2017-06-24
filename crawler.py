@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
 
 
-    url = 'http://www.mafengwo.cn/u/5428847/note.html'
+    url = 'http://www.mafengwo.cn/u/sisisizi/note.html'
     res = requests.get(url)
     res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text, 'html.parser')
@@ -39,7 +39,10 @@ if __name__ == '__main__':
         soup = BeautifulSoup(res.text, 'html.parser')
         imgs = soup.find_all("img")
         time = soup.find_all('li',class_="time")
-        time = time[0].text.split('/')[1]
+        if time == []:
+            time = 'unknown'
+        else:
+            time = time[0].text.split('/')[1]
         loc = soup.find_all('div',class_="relation_mdd opacity_on special_mdd")[0]
         loc = loc.a.get("title")
         #set up the folder
