@@ -19,7 +19,7 @@
             VE450_Team 28
         </fieldset>  
         <fieldset class="demo_content">  
-            <div style="min-height: 900px; width: 100%;" id="map">  
+            <div style="min-height: 900px; width: 145%;" id="map">  
             </div>  
             <script type="text/javascript">  
 
@@ -272,9 +272,28 @@ var markerArr21 = [
 
 
 
-
-
-
+var new_arr = new Array()
+new_arr[0] = markerArr1
+new_arr[1] = markerArr2
+new_arr[2] = markerArr3
+new_arr[3] = markerArr4
+new_arr[4] = markerArr5
+new_arr[5] = markerArr6
+new_arr[6] = markerArr7
+new_arr[7] = markerArr8
+new_arr[8] = markerArr9
+new_arr[9] = markerArr10
+new_arr[10] = markerArr11
+new_arr[11] = markerArr12
+new_arr[12] = markerArr13
+new_arr[13] = markerArr14
+new_arr[14] = markerArr15
+new_arr[15] = markerArr16
+new_arr[16] = markerArr17
+new_arr[17] = markerArr18
+new_arr[18] = markerArr19
+new_arr[19] = markerArr20
+new_arr[20] = markerArr21
 
 
 
@@ -291,7 +310,7 @@ var markerArr21 = [
                     //第1步：设置地图中心点，广州市  
                     var point = new BMap.Point(113.312213, 23.147267);  
                     //第2步：初始化地图,设置中心点坐标和地图级别。  
-                    map.centerAndZoom(point, 3);  
+                    map.centerAndZoom(point, 5);  
                     //第3步：启用滚轮放大缩小  
                     map.enableScrollWheelZoom(true);  
                     //第4步：向地图中添加缩放控件  
@@ -313,40 +332,23 @@ var markerArr21 = [
                     });  
                     map.addControl(ctrlSca);  
 
- 
 
 
+                    //add all image
 
-
-
-                    //第7步：绘制点    
-                    for (var i = 0; i < markerArr1.length; i++) {  
-                        var p0 = markerArr1[i].point.split(",")[0];  
-                        var p1 = markerArr1[i].point.split(",")[1];  
-                        var maker = addMarker(new window.BMap.Point(p0, p1), 1);
-                        addInfoWindow(maker, markerArr1[i]);   
+                    for (var j = 0; j < new_arr.length; j++) {
+                        for (var i = 0; i < new_arr[j].length; i++) {  
+                            var p0 = new_arr[j][i].point.split(",")[0];  
+                            var p1 = new_arr[j][i].point.split(",")[1];  
+                            var maker = addMarker(new window.BMap.Point(p0, p1), j);
+                            addInfoWindow(maker, new_arr[j][i], new_arr[j]);   
+                        }
                     }
-
-                    //var polyline = new BMap.Polyline(polylinePointsArray, {strokeColor:"blue", strokeWeight:3, strokeOpacity:0.5});
-                        
-                    //map.addOverlay(polyline);   
-
-/*
-
-                    for (var i = 0; i < markerArr2.length; i++) {  
-                        var p0 = markerArr2[i].point.split(",")[0];  
-                        var p1 = markerArr2[i].point.split(",")[1];  
-                        var maker = addMarker2(new window.BMap.Point(p0, p1), i);  
-                        addInfoWindow(maker, markerArr2[i], i);   
-                    }  
-*/
+ 
                 }  
 
 
 
-
-
-  
                 // 添加标注  
                 function addMarker(point, index) {  
                     var myIcon = new BMap.Icon('final/' + index + '.jpg',
@@ -359,31 +361,14 @@ var markerArr21 = [
                     return marker;  
                 }  
  
-  /*
-                // 添加标注  
-                function addMarker2(point, index) {  
-                    var myIcon = new BMap.Icon('final/2.jpg',  
-                        new BMap.Size(50, 50), {  
-                            //offset: new BMap.Size(5, 5),  
-                            //imageOffset: new BMap.Size(-20, -20)  
-                        });  
-                    var marker = new BMap.Marker(point, { icon: myIcon });  
-                    map.addOverlay(marker);  
-                    return marker;  
-                } 
-
-*/
-
-
-
-
+  
 
 
 
   
                 // 添加信息窗口  
                 
-                function addInfoWindow(marker, poi) {  
+                function addInfoWindow(marker, poi, tmp) {  
                     //pop弹窗标题  
                     var title = '<div style="font-weight:bold;color:#CE5521;font-size:14px">' + poi.title + '</div>';  
                     //pop弹窗信息  
@@ -391,7 +376,7 @@ var markerArr21 = [
                     html.push('<table cellspacing="0" style="table-layout:fixed;width:100%;font:12px arial,simsun,sans-serif"><tbody>');  
                     var infoWindow = new BMap.InfoWindow(html.join(""), { title: title, width: 200 });  
   
-                    var openInfoWinFun = function (poi) {  
+                    var openInfoWinFun = function (tmp) {  
                         /*
                         var polyline = new BMap.Polyline([    
                            new BMap.Point(113.312213,23.147267),    
@@ -410,6 +395,8 @@ var markerArr21 = [
                             polylinePointsArray[i] = new BMap.Point(p0,p1);
                         }
                         */
+
+                        
                         polylinePointsArray = [ new BMap.Point(114.109497,22.396428),    
                                                 new BMap.Point(138.252924,36.204824),
                                                 new BMap.Point(15.2551187,54.5259614),
@@ -425,7 +412,7 @@ var markerArr21 = [
                         
                         
 
-                        map.centerAndZoom(poi.point, 3); 
+                        //map.centerAndZoom(marker.point, 3); 
                         marker.openInfoWindow(infoWindow); 
                     };  
                     marker.addEventListener("click", openInfoWinFun);  
