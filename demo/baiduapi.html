@@ -22,20 +22,250 @@
             <div style="min-height: 900px; width: 100%;" id="map">  
             </div>  
             <script type="text/javascript">  
-                var markerArr1 = [  
-                    { title: "position 1", point: "113.264531,23.157003"},  
-                    { title: "position 2", point: "113.330934,23.113401"},  
-                    { title: "position 3", point: "113.312213,23.147267"},  
-                    { title: "position 4", point: "113.372867,23.134274"}  
-                ];  
 
-                var markerArr2 = [  
-                    { title: "position 1", point: "113.264531,23.157003"},  
-                    { title: "position 2", point: "103.330934,33.113401"},  
-                    { title: "position 3", point: "103.312213,33.147267"},  
-                    { title: "position 4", point: "103.372867,33.134274"}  
-                ];  
 
+
+
+var markerArr1 = [
+    {title: "Hong Kong", point: "114.109497,22.396428"} ,
+    {title: "Japan", point: "138.252924,36.204824"} ,
+    {title: "Europe", point: "15.2551187,54.5259614"} ,
+    {title: "Guangzhou, Guangdong, China", point: "113.264385,23.12911"} ,
+    {title: "Chongqing, China", point: "106.912251,29.4315861"} ,
+    {title: "Fukuoka, Fukuoka Prefecture, Japan", point: "130.4017155,33.5903547"} ,
+    {title: "Beijing, China", point: "116.4073963,39.9041999"} ,
+    {title: "United States", point: "-95.712891,37.09024"} 
+];
+var markerArr2 = [
+    {title: "Pingyao, Jinzhong, Shanxi, China", point: "112.176206,37.189822"} ,
+    {title: "Hong Kong", point: "114.109497,22.396428"} ,
+    {title: "Vietnam", point: "108.277199,14.058324"} ,
+    {title: "Iceland", point: "-19.020835,64.963051"} ,
+    {title: "Czechia", point: "15.472962,49.817492"} ,
+    {title: "Seattle, WA, USA", point: "-122.3320708,47.6062095"} ,
+    {title: "Dali, Yunnan, China", point: "100.267638,25.606486"} ,
+    {title: "2927 De La Vina St, Santa Barbara, CA 93105, USA", point: "-119.727992,34.4379863"} ,
+    {title: "2927 De La Vina St, Santa Barbara, CA 93105, USA", point: "-119.727992,34.4379863"} ,
+    {title: "Tokyo, Japan", point: "139.7319925,35.7090259"} ,
+    {title: "Spain", point: "-3.74922,40.463667"} 
+];
+var markerArr3 = [
+    {title: "Italy", point: "12.56738,41.87194"} ,
+    {title: "Sanya, China", point: "109.511909,18.252847"} ,
+    {title: "Jeju-do, South Korea", point: "126.4983023,33.4890113"} ,
+    {title: "Taipei, Keelung City, Taiwan", point: "121.5654177,25.0329694"} ,
+    {title: "ds, 506 Sherwood Dr, Crown Point, IN 46307, USA", point: "-87.3591069,41.3945247"} ,
+    {title: "Seoul, South Korea", point: "126.9779692,37.566535"} ,
+    {title: "Seattle, WA, USA", point: "-122.3320708,47.6062095"} ,
+    {title: "Canada", point: "-106.346771,56.130366"} ,
+    {title: "Greece", point: "21.824312,39.074208"} ,
+    {title: "Hong Kong", point: "114.109497,22.396428"} ,
+    {title: "Chiang Mai, Mueang Chiang Mai District, Chiang Mai, Thailand", point: "98.9817163,18.7060641"} ,
+    {title: "Macau", point: "113.543873,22.198745"} 
+];
+var markerArr4 = [
+    {title: "Ordos, Inner Mongolia, China", point: "109.781327,39.608266"} ,
+    {title: "Medog, Nyingchi, Tibet, China", point: "95.333197,29.325298"} ,
+    {title: "Hawaii, USA", point: "-155.5827818,19.8967662"} ,
+    {title: "Queensland, Australia", point: "142.7027956,-20.9175738"} ,
+    {title: "Qingdao, Shandong, China", point: "120.382609,36.067108"} ,
+    {title: "Dubai - United Arab Emirates", point: "55.2707828,25.2048493"} ,
+    {title: "Sumatra, Indonesia", point: "101.3431058,-0.589724"} 
+];
+var markerArr5 = [
+    {title: "Nyingchi, Tibet, China", point: "94.36149,29.649128"} ,
+    {title: "Qiubei, Wenshan, Yunnan, China", point: "104.1216,24.136933"} ,
+    {title: "Haikou, Hainan, China", point: "110.198286,20.044412"} ,
+    {title: "Beijing, China", point: "116.4073963,39.9041999"} ,
+    {title: "Wenchang, Hainan, China", point: "110.797759,19.543278"} ,
+    {title: "Bo'aozhen, Qionghai, Hainan, China, 571434", point: "110.586571,19.159787"} ,
+    {title: "Hainan, China", point: "109.949686,19.5663947"} ,
+    {title: "Lhasa, Tibet, China", point: "91.17211,29.652491"} ,
+    {title: "Chiang Mai, Mueang Chiang Mai District, Chiang Mai, Thailand", point: "98.9817163,18.7060641"} ,
+    {title: "Beijiangxiang, Huma, Da Hinggan Ling, Heilongjiang, China", point: "126.099366,51.039376"} ,
+    {title: "Jiuzhai Valley National Park, Jiuzhaigou Xian, Aba Zangzuqiangzuzizhizhou, Sichuan Sheng, China, 623400", point: "103.9185994,33.2600421"} 
+];
+var markerArr6 = [
+    {title: "Hanyuan, Ya'an, Sichuan, China", point: "102.652483,29.344616"} ,
+    {title: "Weizhou Island, Haicheng, Beihai, China", point: "109.118014,21.042256"} ,
+    {title: "Hong Kong", point: "114.109497,22.396428"} ,
+    {title: "Seoul, South Korea", point: "126.9779692,37.566535"} ,
+    {title: "Taiwan", point: "121.0793705,23.9036873"} ,
+    {title: "Hulun Buir, Inner Mongolia, China", point: "119.765607,49.211742"} ,
+    {title: "Bangkok, Thailand", point: "100.5017651,13.7563309"} ,
+    {title: "Yunnan, China", point: "101.3431058,24.4752847"} ,
+    {title: "Turkey", point: "35.243322,38.963745"} ,
+    {title: "Bali, Indonesia", point: "115.0919509,-8.3405389"} 
+];
+var markerArr7 = [
+    {title: "2927 De La Vina St, Santa Barbara, CA 93105, USA", point: "-119.727992,34.4379863"} ,
+    {title: "Dysart Trail, Goodyear, AZ 85338, USA", point: "-112.3780158,33.3560651"} ,
+    {title: "Kyoto, Kyoto Prefecture, Japan", point: "135.7680294,35.0116363"} ,
+    {title: "Japan", point: "138.252924,36.204824"} ,
+    {title: "France", point: "2.213749,46.227638"} ,
+    {title: "Hong Kong", point: "114.109497,22.396428"} 
+];
+var markerArr8 = [
+    {title: "Kansai International Airport (KIX), １ Senshukukokita, Izumisano, Osaka Prefecture 549-0001, Japan", point: "135.2303939,34.4320024"} ,
+    {title: "Singapore", point: "103.819836,1.352083"} ,
+    {title: "Jeju-do, South Korea", point: "126.4983023,33.4890113"} ,
+    {title: "Mauritius", point: "57.552152,-20.348404"} ,
+    {title: "Lugu Lake, China", point: "100.7887231,27.7244646"} ,
+    {title: "Krong Siem Reap, Cambodia", point: "103.8669857,13.4124693"} ,
+    {title: "Okinawa Prefecture, Japan", point: "127.6809317,26.2124013"} ,
+    {title: "Da Nang, Hải Châu, Da Nang, Vietnam", point: "108.2021667,16.0544068"} ,
+    {title: "Palau", point: "134.58252,7.51498"} ,
+    {title: "Hong Kong", point: "114.109497,22.396428"} ,
+    {title: "Malaysia", point: "101.975766,4.210484"} 
+];
+var markerArr9 = [
+    {title: "Jeju-do, South Korea", point: "126.4983023,33.4890113"} ,
+    {title: "Shanghai, China", point: "121.4737021,31.2303904"} ,
+    {title: "Yunnan, China", point: "101.3431058,24.4752847"} ,
+    {title: "Scotland, UK", point: "-4.2026458,56.4906712"} ,
+    {title: "New York, USA", point: "-74.2179326,43.2994285"} ,
+    {title: "Taiwan", point: "121.0793705,23.9036873"} ,
+    {title: "United Kingdom", point: "-3.435973,55.378051"} ,
+    {title: "California, USA", point: "-119.4179324,36.778261"} ,
+    {title: "Copenhagen, Denmark", point: "12.5683371,55.6760968"} ,
+    {title: "Iceland", point: "-19.020835,64.963051"} ,
+    {title: "Qingdao, Shandong, China", point: "120.382609,36.067108"} 
+];
+var markerArr10 = [
+    {title: "Guiyang, Guizhou, China", point: "106.630153,26.647661"} ,
+    {title: "Singapore", point: "103.819836,1.352083"} ,
+    {title: "ds, 506 Sherwood Dr, Crown Point, IN 46307, USA", point: "-87.3591069,41.3945247"} ,
+    {title: "Chongqing, China", point: "106.912251,29.4315861"} ,
+    {title: "China, Jilin, Longtan, 乌拉街满族镇", point: "126.439914,44.118326"} ,
+    {title: "Seoul, South Korea", point: "126.9779692,37.566535"} ,
+    {title: "Lugu Lake, China", point: "100.7887231,27.7244646"} ,
+    {title: "Sanya, China", point: "109.511909,18.252847"} ,
+    {title: "Maldives", point: "73.536101,1.9772276"} ,
+    {title: "Vietnam", point: "108.277199,14.058324"} ,
+    {title: "Hong Kong", point: "114.109497,22.396428"} 
+];
+var markerArr11 = [
+    {title: "Xinjiang, China", point: "87.5395855,42.5246357"} ,
+    {title: "Jiangsu, China", point: "119.7889248,33.1401715"} ,
+    {title: "Nepal", point: "84.124008,28.394857"} ,
+    {title: "Chishui, Zunyi, Guizhou, China", point: "105.697472,28.590337"} ,
+    {title: "ds, 506 Sherwood Dr, Crown Point, IN 46307, USA", point: "-87.3591069,41.3945247"} ,
+    {title: "Hubei, China", point: "112.2384017,30.7378118"} ,
+    {title: "Nagoya, Aichi Prefecture, Japan", point: "136.906398,35.1814464"} ,
+    {title: "Jeju-do, South Korea", point: "126.4983023,33.4890113"} ,
+    {title: "Jiaozuo, Henan, China", point: "113.241823,35.215892"} ,
+    {title: "Saipan, CNMI", point: "145.7297891,15.1515153"} ,
+    {title: "Shennongjia, Hubei, China", point: "110.680447,31.743483"} ,
+    {title: "Xishuangbanna, Yunnan, China", point: "100.79715,22.00881"} 
+];
+var markerArr12 = [
+    {title: "Long Island, New York, USA", point: "-73.134961,40.789142"} ,
+    {title: "Huangshan, Anhui, China", point: "118.337521,29.714699"} ,
+    {title: "Yunnan, China", point: "101.3431058,24.4752847"} ,
+    {title: "Xiamen, Fujian, China", point: "118.089425,24.479833"} ,
+    {title: "Shanxi, China", point: "111.8568586,37.2425649"} ,
+    {title: "Hangzhou, Zhejiang, China", point: "120.15507,30.274084"} ,
+    {title: "Beijing, China", point: "116.4073963,39.9041999"} ,
+    {title: "North-East District, Botswana", point: "27.4556388,-20.9030555"} ,
+    {title: "Wulanbutongxiang, Hexigten, Chifeng, Inner Mongolia, China", point: "117.240861,42.534721"} ,
+    {title: "Taishan Mountain, Taishan, Tai'an, China", point: "117.1055555,36.2558333"} ,
+    {title: "Bali, Indonesia", point: "115.0919509,-8.3405389"} 
+];
+var markerArr13 = [
+    {title: "Semporna, Sabah, Malaysia", point: "118.611545,4.479391"} ,
+    {title: "Taiwan", point: "121.0793705,23.9036873"} ,
+    {title: "Chongqing, China", point: "106.912251,29.4315861"} ,
+    {title: "Chiang Mai, Mueang Chiang Mai District, Chiang Mai, Thailand", point: "98.9817163,18.7060641"} ,
+    {title: "Yilan County, Taiwan", point: "121.7377502,24.7021073"} ,
+    {title: "Palau", point: "134.58252,7.51498"} ,
+    {title: "Orchid Island, Lanyu Township, Taitung County, Taiwan 952", point: "121.548418,22.0435616"} 
+];
+var markerArr14 = [
+    {title: "Bali, Indonesia", point: "115.0919509,-8.3405389"} ,
+    {title: "Xiamen, Fujian, China", point: "118.089425,24.479833"} ,
+    {title: "Sanya, China", point: "109.511909,18.252847"} ,
+    {title: "Israel", point: "34.851612,31.046051"} ,
+    {title: "Seoul, South Korea", point: "126.9779692,37.566535"} ,
+    {title: "Bintan Island, Riau Islands, Indonesia", point: "104.4257533,1.1367041"} ,
+    {title: "Turkey", point: "35.243322,38.963745"} ,
+    {title: "Japan", point: "138.252924,36.204824"} ,
+    {title: "Philippines", point: "121.774017,12.879721"} ,
+    {title: "Austria", point: "14.550072,47.516231"} ,
+    {title: "Hawaii, USA", point: "-155.5827818,19.8967662"} 
+];
+var markerArr15 = [
+    {title: "Czechia", point: "15.472962,49.817492"} ,
+    {title: "Seoul, South Korea", point: "126.9779692,37.566535"} ,
+    {title: "Taiwan", point: "121.0793705,23.9036873"} ,
+    {title: "Spain", point: "-3.74922,40.463667"} ,
+    {title: "United Kingdom", point: "-3.435973,55.378051"} ,
+    {title: "Turkey", point: "35.243322,38.963745"} 
+];
+var markerArr16 = [
+    {title: "Yangzhou, Jiangsu, China", point: "119.412939,32.394209"} ,
+    {title: "Vietnam", point: "108.277199,14.058324"} ,
+    {title: "Philippines", point: "121.774017,12.879721"} ,
+    {title: "China, Hebei, Chengde, Weichang, 河北", point: "117.741688,41.916998"} ,
+    {title: "Sri Lanka", point: "80.771797,7.873054"} ,
+    {title: "Taiwan", point: "121.0793705,23.9036873"} ,
+    {title: "Thailand", point: "100.992541,15.870032"} ,
+    {title: "Singapore", point: "103.819836,1.352083"} ,
+    {title: "Morocco", point: "-7.09262,31.791702"} 
+];
+var markerArr17 = [
+    {title: "Nepal", point: "84.124008,28.394857"} ,
+    {title: "Xiuwu, Jiaozuo, Henan, China", point: "113.42666,35.420702"} ,
+    {title: "Lake Baikal, Russia", point: "108.1649964,53.5587003"} ,
+    {title: "Cambodia", point: "104.990963,12.565679"} ,
+    {title: "Wuzhenzhen, Tongxiang, Jiaxing, Zhejiang, China, 314501", point: "120.48806,30.742803"} ,
+    {title: "Emeishan, Leshan, Sichuan, China", point: "103.484503,29.601198"} ,
+    {title: "Palau", point: "134.58252,7.51498"} ,
+    {title: "Nanjing, Jiangsu, China", point: "118.796877,32.060255"} ,
+    {title: "Wuxi, Jiangsu, China", point: "120.31191,31.491169"} ,
+    {title: "Yangzhou, Jiangsu, China", point: "119.412939,32.394209"} ,
+    {title: "Singapore", point: "103.819836,1.352083"} 
+];
+var markerArr18 = [
+    {title: "Sipadan Island, Malaysia", point: "118.6286669,4.1149742"} ,
+    {title: "Qinghai, China", point: "96.4077358,35.744798"} ,
+    {title: "Chengdu, Sichuan, China", point: "104.066801,30.572815"} ,
+    {title: "Bali, Indonesia", point: "115.0919509,-8.3405389"} ,
+    {title: "Kansai International Airport (KIX), １ Senshukukokita, Izumisano, Osaka Prefecture 549-0001, Japan", point: "135.2303939,34.4320024"} ,
+    {title: "Sanya, China", point: "109.511909,18.252847"} ,
+    {title: "Palau", point: "134.58252,7.51498"} ,
+    {title: "Bangkok, Thailand", point: "100.5017651,13.7563309"} 
+];
+var markerArr19 = [
+    {title: "Boracay, Malay, Philippines", point: "121.924815,11.9673753"} ,
+    {title: "Ko Samui, Ko Samui District, Surat Thani, Thailand", point: "100.0135929,9.5120168"} ,
+    {title: "Chiang Mai, Mueang Chiang Mai District, Chiang Mai, Thailand", point: "98.9817163,18.7060641"} ,
+    {title: "Greece", point: "21.824312,39.074208"} ,
+    {title: "Sanya, China", point: "109.511909,18.252847"} ,
+    {title: "Hong Kong", point: "114.109497,22.396428"} ,
+    {title: "Xiamen, Fujian, China", point: "118.089425,24.479833"} ,
+    {title: "Sanya, China", point: "109.511909,18.252847"} ,    
+    {title: "Central Europe", point: "14.9705982,50.3784723"} ,
+    {title: "Shanghai, China", point: "121.4737021,31.2303904"} 
+];
+var markerArr20 = [
+    {title: "Lombok, West Nusa Tenggara, Indonesia", point: "116.3249438,-8.650979"} ,
+    {title: "Palau", point: "134.58252,7.51498"} ,
+    {title: "Philippines", point: "121.774017,12.879721"} ,
+    {title: "Philippines", point: "121.774017,12.879721"} ,
+    {title: "France", point: "2.213749,46.227638"} 
+];
+var markerArr21 = [
+    {title: "Iran", point: "53.688046,32.427908"} ,
+    {title: "Xi'an, Shaanxi, China", point: "108.93977,34.341574"} ,
+    {title: "Thailand", point: "100.992541,15.870032"} ,
+    {title: "Qinghai Lake, China", point: "100.3497895,36.7599029"} ,
+    {title: "Hong Kong", point: "114.109497,22.396428"} ,
+    {title: "Taiwan", point: "121.0793705,23.9036873"} ,
+    {title: "Yangshuo, Guilin, Guangxi, China", point: "110.496593,24.77848"} ,
+    {title: "Sanya, China", point: "109.511909,18.252847"} ,
+    {title: "Yunnan, China", point: "101.3431058,24.4752847"} ,
+    {title: "Krong Siem Reap, Cambodia", point: "103.8669857,13.4124693"} 
+];
  
 
 
@@ -61,7 +291,7 @@
                     //第1步：设置地图中心点，广州市  
                     var point = new BMap.Point(113.312213, 23.147267);  
                     //第2步：初始化地图,设置中心点坐标和地图级别。  
-                    map.centerAndZoom(point, 7);  
+                    map.centerAndZoom(point, 3);  
                     //第3步：启用滚轮放大缩小  
                     map.enableScrollWheelZoom(true);  
                     //第4步：向地图中添加缩放控件  
@@ -86,16 +316,22 @@
  
 
 
-  
+
+
+
                     //第7步：绘制点    
                     for (var i = 0; i < markerArr1.length; i++) {  
                         var p0 = markerArr1[i].point.split(",")[0];  
                         var p1 = markerArr1[i].point.split(",")[1];  
-                        var maker = addMarker1(new window.BMap.Point(p0, p1), i);  
-                        addInfoWindow(maker, markerArr1[i], i);   
-                    }  
+                        var maker = addMarker(new window.BMap.Point(p0, p1), 1);
+                        addInfoWindow(maker, markerArr1[i]);   
+                    }
 
+                    //var polyline = new BMap.Polyline(polylinePointsArray, {strokeColor:"blue", strokeWeight:3, strokeOpacity:0.5});
+                        
+                    //map.addOverlay(polyline);   
 
+/*
 
                     for (var i = 0; i < markerArr2.length; i++) {  
                         var p0 = markerArr2[i].point.split(",")[0];  
@@ -103,8 +339,8 @@
                         var maker = addMarker2(new window.BMap.Point(p0, p1), i);  
                         addInfoWindow(maker, markerArr2[i], i);   
                     }  
+*/
                 }  
-
 
 
 
@@ -112,9 +348,9 @@
 
   
                 // 添加标注  
-                function addMarker1(point, index) {  
-                    var myIcon = new BMap.Icon('3.jpg',  
-                        new BMap.Size(42, 42), {  
+                function addMarker(point, index) {  
+                    var myIcon = new BMap.Icon('final/' + index + '.jpg',
+                        new BMap.Size(50, 50), {  
                             //offset: new BMap.Size(5, 5),  
                             //imageOffset: new BMap.Size(-20, -20)  
                         });  
@@ -123,10 +359,10 @@
                     return marker;  
                 }  
  
-  
+  /*
                 // 添加标注  
                 function addMarker2(point, index) {  
-                    var myIcon = new BMap.Icon('2.jpg',  
+                    var myIcon = new BMap.Icon('final/2.jpg',  
                         new BMap.Size(50, 50), {  
                             //offset: new BMap.Size(5, 5),  
                             //imageOffset: new BMap.Size(-20, -20)  
@@ -136,7 +372,7 @@
                     return marker;  
                 } 
 
-
+*/
 
 
 
@@ -153,27 +389,47 @@
                     //pop弹窗信息  
                     var html = [];  
                     html.push('<table cellspacing="0" style="table-layout:fixed;width:100%;font:12px arial,simsun,sans-serif"><tbody>');  
-                    //html.push('<tr>');  
-                    //html.push('<td style="vertical-align:top;line-height:16px;width:38px;white-space:nowrap;word-break:keep-all">地址:</td>');  
-                    //html.push('<td style="vertical-align:top;line-height:16px">' + poi.address + ' </td>');  
-                    //html.push('</tr>');  
-                    //html.push('</tbody></table>');  
                     var infoWindow = new BMap.InfoWindow(html.join(""), { title: title, width: 200 });  
   
                     var openInfoWinFun = function (poi) {  
+                        /*
                         var polyline = new BMap.Polyline([    
                            new BMap.Point(113.312213,23.147267),    
                            new BMap.Point(113.330934,23.113401),
                            new BMap.Point(113.372867,23.134274),  
                          ],    
                          {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5}    
-                        );  
+                        );
+                        */  
+                        
+                        /*
+                        var polylinePointsArray = [];
+                        for (i = 0; i < markerArr1.length; i++) {
+                            var p0 = markerArr1[i].point.split(",")[0];  
+                            var p1 = markerArr1[i].point.split(",")[1]; 
+                            polylinePointsArray[i] = new BMap.Point(p0,p1);
+                        }
+                        */
+                        polylinePointsArray = [ new BMap.Point(114.109497,22.396428),    
+                                                new BMap.Point(138.252924,36.204824),
+                                                new BMap.Point(15.2551187,54.5259614),
+                                                new BMap.Point(113.264385,23.12911),  
+                                                new BMap.Point(106.912251,29.4315861),  
+                                                new BMap.Point(130.4017155,33.5903547),  
+                                                new BMap.Point(116.4073963,39.9041999),  
+                                                new BMap.Point(-95.712891,37.09024),    
+                        ];
+                        var polyline = new BMap.Polyline(polylinePointsArray, {strokeColor:"blue", strokeWeight:3, strokeOpacity:0.5});
+                        
                         map.addOverlay(polyline); 
-                        map.centerAndZoom(poi.point, 5); 
+                        
+                        
+
+                        map.centerAndZoom(poi.point, 3); 
                         marker.openInfoWindow(infoWindow); 
                     };  
                     marker.addEventListener("click", openInfoWinFun);  
-                    return openInfoWinFun;  
+                    //return openInfoWinFun;  
                 }
 
 
