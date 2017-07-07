@@ -341,7 +341,7 @@ new_arr[20] = markerArr21
                             var p0 = new_arr[j][i].point.split(",")[0];  
                             var p1 = new_arr[j][i].point.split(",")[1];  
                             var maker = addMarker(new window.BMap.Point(p0, p1), j);
-                            addInfoWindow(maker, new_arr[j][i], new_arr[j]);   
+                            addInfoWindow(maker,new_arr[j][i], new_arr[j], j);   
                         }
                     }
  
@@ -368,7 +368,10 @@ new_arr[20] = markerArr21
   
                 // 添加信息窗口  
                 
-                function addInfoWindow(marker, poi, tmp) {  
+                function addInfoWindow(marker, poi, tmp, index) {  
+
+                    //map.clearOverlays()
+                    //marker.removeEventListener('click', openInfoWinFun);
                     //pop弹窗标题  
                     var title = '<div style="font-weight:bold;color:#CE5521;font-size:14px">' + poi.title + '</div>';  
                     //pop弹窗信息  
@@ -376,7 +379,17 @@ new_arr[20] = markerArr21
                     html.push('<table cellspacing="0" style="table-layout:fixed;width:100%;font:12px arial,simsun,sans-serif"><tbody>');  
                     var infoWindow = new BMap.InfoWindow(html.join(""), { title: title, width: 200 });  
   
-                    var openInfoWinFun = function (poi) {                    
+                    var openInfoWinFun = function (poi) {     
+                        map.clearOverlays()    
+
+                        
+
+                        for (i = 0; i < tmp.length; i++) {  
+                            var p0 = tmp[i].point.split(",")[0];  
+                            var p1 = tmp[i].point.split(",")[1];  
+                            var maker = addMarker(new window.BMap.Point(p0, p1), index);  
+                        } 
+                               
                         
                         var polylinePointsArray = [];
                         for (i = 0; i < tmp.length; i++) {
