@@ -376,26 +376,16 @@ new_arr[20] = markerArr21
                     html.push('<table cellspacing="0" style="table-layout:fixed;width:100%;font:12px arial,simsun,sans-serif"><tbody>');  
                     var infoWindow = new BMap.InfoWindow(html.join(""), { title: title, width: 200 });  
   
-                    var openInfoWinFun = function (tmp) {  
-                        /*
-                        var polyline = new BMap.Polyline([    
-                           new BMap.Point(113.312213,23.147267),    
-                           new BMap.Point(113.330934,23.113401),
-                           new BMap.Point(113.372867,23.134274),  
-                         ],    
-                         {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5}    
-                        );
-                        */  
+                    var openInfoWinFun = function (poi) {                    
                         
-                        /*
                         var polylinePointsArray = [];
-                        for (i = 0; i < markerArr1.length; i++) {
-                            var p0 = markerArr1[i].point.split(",")[0];  
-                            var p1 = markerArr1[i].point.split(",")[1]; 
+                        for (i = 0; i < tmp.length; i++) {
+                            var p0 = tmp[i].point.split(",")[0];  
+                            var p1 = tmp[i].point.split(",")[1]; 
                             polylinePointsArray[i] = new BMap.Point(p0,p1);
                         }
-                        */
-
+                        
+                        /*
                         
                         polylinePointsArray = [ new BMap.Point(114.109497,22.396428),    
                                                 new BMap.Point(138.252924,36.204824),
@@ -406,13 +396,14 @@ new_arr[20] = markerArr21
                                                 new BMap.Point(116.4073963,39.9041999),  
                                                 new BMap.Point(-95.712891,37.09024),    
                         ];
+                        */
                         var polyline = new BMap.Polyline(polylinePointsArray, {strokeColor:"blue", strokeWeight:3, strokeOpacity:0.5});
                         
                         map.addOverlay(polyline); 
                         
                         
 
-                        //map.centerAndZoom(marker.point, 3); 
+                        //map.centerAndZoom(poi.point, 3); 
                         marker.openInfoWindow(infoWindow); 
                     };  
                     marker.addEventListener("click", openInfoWinFun);  
