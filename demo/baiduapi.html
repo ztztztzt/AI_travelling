@@ -19,12 +19,24 @@
             VE450_Team 28
         </fieldset>  
         <fieldset class="demo_content">  
-            <div style="min-height: 900px; width: 145%;" id="map">  
+            <div style="min-height: 900px; width: 100%;" id="map">  
             </div>  
-            <script type="text/javascript">  
+            <script type="text/javascript"> 
+src="http://api.map.baidu.com/api?v=2.0&ak=您的密钥"></script>
+    <title>添加/删除工具条、比例尺控件</title>
+</head>
+<body>
+    <div id="allmap"></div>
+    <div id="r-result">
+        <input type="button" onclick="location.reload();" value="Reset" />
+    </div>
+</body>
+</html>
+<script type="text/javascript">
 
 
 
+    //
 
 var markerArr1 = [
     {title: "Hong Kong", point: "114.109497,22.396428"} ,
@@ -302,13 +314,12 @@ new_arr[20] = markerArr21
 
 
 
-
   
                 var map; //Map实例  
                 function map_init() {  
                     map = new BMap.Map("map");  
                     //第1步：设置地图中心点，广州市  
-                    var point = new BMap.Point(113.312213, 23.147267);  
+                    var point = new BMap.Point(63.312213, 30.147267);  
                     //第2步：初始化地图,设置中心点坐标和地图级别。  
                     map.centerAndZoom(point, 5);  
                     //第3步：启用滚轮放大缩小  
@@ -341,7 +352,7 @@ new_arr[20] = markerArr21
                             var p0 = new_arr[j][i].point.split(",")[0];  
                             var p1 = new_arr[j][i].point.split(",")[1];  
                             var maker = addMarker(new window.BMap.Point(p0, p1), j);
-                            addInfoWindow(maker, new_arr[j][i], new_arr[j]);   
+                            addInfoWindow(maker,new_arr[j][i], new_arr[j], j);   
                         }
                     }
  
@@ -357,7 +368,9 @@ new_arr[20] = markerArr21
                             //imageOffset: new BMap.Size(-20, -20)  
                         });  
                     var marker = new BMap.Marker(point, { icon: myIcon });  
-                    map.addOverlay(marker);  
+                    map.addOverlay(marker); 
+                    var label = new BMap.Label(index,{offset:new BMap.Size(20,-10)});
+                    marker.setLabel(label); 
                     return marker;  
                 }  
  
@@ -368,7 +381,10 @@ new_arr[20] = markerArr21
   
                 // 添加信息窗口  
                 
-                function addInfoWindow(marker, poi, tmp) {  
+                function addInfoWindow(marker, poi, tmp, index) {  
+
+                    //map.clearOverlays()
+                    //marker.removeEventListener('click', openInfoWinFun);
                     //pop弹窗标题  
                     var title = '<div style="font-weight:bold;color:#CE5521;font-size:14px">' + poi.title + '</div>';  
                     //pop弹窗信息  
@@ -376,50 +392,80 @@ new_arr[20] = markerArr21
                     html.push('<table cellspacing="0" style="table-layout:fixed;width:100%;font:12px arial,simsun,sans-serif"><tbody>');  
                     var infoWindow = new BMap.InfoWindow(html.join(""), { title: title, width: 200 });  
   
-                    var openInfoWinFun = function (tmp) {  
+                    var openInfoWinFun = function (poi) {   
+                        marker.openInfoWindow(infoWindow); 
+
+                        var allOverlay = map.getOverlays();
+                        for (var i = 0; i < allOverlay.length - 1; i++){
+                            if(allOverlay[i].getLabel().content != index){
+                                map.removeOverlay(allOverlay[i]);
+                            }
+                        }
+
+                        //map.clearOverlays();
                         /*
-                        var polyline = new BMap.Polyline([    
-                           new BMap.Point(113.312213,23.147267),    
-                           new BMap.Point(113.330934,23.113401),
-                           new BMap.Point(113.372867,23.134274),  
-                         ],    
-                         {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5}    
-                        );
-                        */  
+
+                        for (i = 0; i < tmp.length; i++) {  
+                            var p0 = tmp[i].point.split(",")[0];  
+                            var p1 = tmp[i].point.split(",")[1];  
+                            var maker = addMarker(new window.BMap.Point(p0, p1), index); 
+                            //addInfoWindow2(maker,tmp[j][i], tmp[j], j);
+                            //marker.openInfoWindow(infoWindow); 
+                            //addInfoWindow(maker,tmp[j][i], tmp[j], j); 
+                        } 
+                        */
                         
-                        /*
+                               
+                        
                         var polylinePointsArray = [];
-                        for (i = 0; i < markerArr1.length; i++) {
-                            var p0 = markerArr1[i].point.split(",")[0];  
-                            var p1 = markerArr1[i].point.split(",")[1]; 
+                        for (i = 0; i < tmp.length; i++) {
+                            var p0 = tmp[i].point.split(",")[0];  
+                            var p1 = tmp[i].point.split(",")[1]; 
                             polylinePointsArray[i] = new BMap.Point(p0,p1);
                         }
-                        */
-
                         
-                        polylinePointsArray = [ new BMap.Point(114.109497,22.396428),    
-                                                new BMap.Point(138.252924,36.204824),
-                                                new BMap.Point(15.2551187,54.5259614),
-                                                new BMap.Point(113.264385,23.12911),  
-                                                new BMap.Point(106.912251,29.4315861),  
-                                                new BMap.Point(130.4017155,33.5903547),  
-                                                new BMap.Point(116.4073963,39.9041999),  
-                                                new BMap.Point(-95.712891,37.09024),    
-                        ];
+
                         var polyline = new BMap.Polyline(polylinePointsArray, {strokeColor:"blue", strokeWeight:3, strokeOpacity:0.5});
                         
                         map.addOverlay(polyline); 
+                        var v=map.getViewport(polylinePointsArray);
+                        map.centerAndZoom(v.center,v.zoom);
                         
                         
 
-                        //map.centerAndZoom(marker.point, 3); 
+                        //map.centerAndZoom(poi.point, 3); 
+                        //marker.openInfoWindow(infoWindow); 
+                    };  
+                    marker.addEventListener("click", openInfoWinFun);  
+                    //return openInfoWinFun;  
+                }
+
+/*
+
+                function addInfoWindow2(marker, poi, tmp, index) {  
+
+                    //map.clearOverlays()
+                    //marker.removeEventListener('click', openInfoWinFun);
+                    //pop弹窗标题  
+                    var title = '<div style="font-weight:bold;color:#CE5521;font-size:14px">' + poi.title + '</div>';  
+                    //pop弹窗信息  
+                    var html = [];  
+                    html.push('<table cellspacing="0" style="table-layout:fixed;width:100%;font:12px arial,simsun,sans-serif"><tbody>');  
+                    var infoWindow = new BMap.InfoWindow(html.join(""), { title: title, width: 200 });  
+  
+                    var openInfoWinFun = function (poi) {   
+                        //marker.openInfoWindow(infoWindow);  
+                        
+                        
+
+                        //map.centerAndZoom(poi.point, 3); 
                         marker.openInfoWindow(infoWindow); 
                     };  
                     marker.addEventListener("click", openInfoWinFun);  
                     //return openInfoWinFun;  
                 }
 
-
+*/
                 
   
                 //异步调用百度js  
