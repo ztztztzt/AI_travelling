@@ -2,27 +2,45 @@ import cv2
 import os
 import matplotlib.pyplot as plt  
 
-# rectangle color and stroke
-color = (0,0,255)       # reverse of RGB (B,G,R) - weird
-strokeWeight = 1        # thickness of outline
 
-# set window name
-windowName = "Object Detection"
-i = 0
+num_total = 0
+num_succ = 0
 
-# load an image to search for faces
-img = cv2.imread("17.jpg")
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-# load detection file (various files for different views and uses)
-facecascade = cv2.CascadeClassifier("/usr/local/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml")
+folder = '/home/t28/Documents/ve450/noface/'
+List = os.listdir(folder)
+imglist = []
+for i in range(len(List)):
+	name1 = List[i]
+	new_folder = os.path.join(folder,name1)
+	new_list = os.listdir(new_folder)
+	for j in range(len(new_list)):
+		image 	= new_list[j]	
+		num_total = num_total + 1
+		print num_total
+		directory = os.path.join(new_folder,image)
 
+# rectangle color 	and stroke
+		color = (0,0,255)       # reverse of RGB (B,G,R) - weird
+		strokeWeight = 1        # thickness of outline
 
+		# set window name
+		windowName = "Object Detection"
+		# load an image to search for faces
+		img = cv2.imread(directory)
+		gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+		# load Detectionn file (various files for different views and uses)
+		facecascade = cv2.CascadeClassifier("/home/t28/Documents/ve450/AI_travelling/haarcascade_frontalface_default.xml")
 
-# preprocessing, as suggested by: http://www.bytefish.de/wiki/opencv/object_detection
+		# detect objects, return as list
+		#faces = facecascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=9, minSize=(30,30))	
+		faces = facecascade.detectMultiScale(gray)
 
-# detect objects, return as list
-faces = facecascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=9, minSize=(50,50))
+		if faces != ():	
+			num_succ = num_succ + 1
 
+# 66.4
+
+'''
 
     # get a list of rectangles
 for x,y, width,height in faces:
@@ -44,3 +62,7 @@ if not faces is ():
 # display!
 cv2.destroyAllWindows()
 cv2.imshow(windowName, img)
+'''
+
+_path = os.getcwd()
+cv2.imwrite(_path+'/' + '13_1.jpg',img)

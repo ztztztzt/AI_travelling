@@ -17,8 +17,10 @@ def getrect(img):
     response = urllib2.urlopen(r)
     r = response.read()
     final = json.loads(r)
-    result = final['results'][0]
-    return result['face_rect']
+    if final['message'] == 'OK':
+        return final['results'][0]['face_rect']
+    else:
+        return -1
 
 
 def uploadimage(img, id):

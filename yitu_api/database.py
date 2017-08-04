@@ -7,7 +7,7 @@ import get_session_id as gid
 
 
 def construct_database():
-	data = {"name": "test_facerecog_pic", "type":  0, "comment" : "The database for face recognition algorithm",
+	data = {"name": "test_facerecog_groundtruth", "type":  0, "comment" : "The database for face recognition algorithm",
 			"id" : 18}
 
 	r = urllib2.Request("http://127.0.0.1:9900/face/v1/framework/face_image/repository", 
